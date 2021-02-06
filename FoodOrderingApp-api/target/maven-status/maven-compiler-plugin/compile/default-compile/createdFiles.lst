@@ -41,6 +41,7 @@ com\upgrad\FoodOrderingApp\api\model\ItemQuantity.class
 com\upgrad\FoodOrderingApp\api\controller\AddressController.class
 com\upgrad\FoodOrderingApp\api\model\OrderListAddressState.class
 com\upgrad\FoodOrderingApp\api\model\CouponDetailsResponse.class
+com\upgrad\FoodOrderingApp\api\controller\CategoryController.class
 com\upgrad\FoodOrderingApp\api\model\ItemQuantityResponseItem.class
 com\upgrad\FoodOrderingApp\api\model\ErrorResponse.class
 io\swagger\Swagger2SpringBoot.class
