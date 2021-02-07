@@ -27,6 +27,13 @@ public class OrderController {
     @Autowired
     private ItemService itemService;
 
+    /**
+     *
+     * @param authorization, coupon_name
+     * @return Coupon details of the coupon name provided
+     * @throws AuthorizationFailedException - When customer is not logged in or logged out or login expired
+     *         CouponNotFoundException - When the coupon provided is invalid
+     */
     @RequestMapping(method = RequestMethod.GET, path = "/order/coupon/{coupon_name}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<CouponDetailsResponse> getCoupon(@RequestHeader("authorization")  final String authorization, @PathVariable("coupon_name") final String couponName)
             throws AuthorizationFailedException, CouponNotFoundException {
@@ -56,6 +63,12 @@ public class OrderController {
 
     }
 
+    /**
+     *
+     * @param authorization
+     * @throws AuthorizationFailedException - When customer is not logged in or logged out or login expired
+     *
+     */
     @RequestMapping(method = RequestMethod.GET, path = "/order", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<CustomerOrderResponse> getCustomerOrders(@RequestHeader("authorization") final String authorization)
             throws AuthorizationFailedException {
@@ -140,6 +153,17 @@ public class OrderController {
 
     }
 
+    /**
+     *
+     * @param saveOrderRequest, authorization
+     * @return Response of the saved order
+     * @throws AuthorizationFailedException - When customer is not logged in or logged out or login expired
+     *         CouponNotFoundException - When the coupon provided is invalid
+     *         AddressNotFoundException - When the address provided is invalid
+     *         PaymentMethodNotFoundException - When the payment method is invalid
+     *         RestaurantNotFoundException - When the restaurant is invalid
+     *
+     */
     @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, path = "/order", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<SaveOrderResponse> saveOrder(@RequestHeader("authorization") final String authorization, final SaveOrderRequest saveOrderRequest)

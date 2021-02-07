@@ -74,7 +74,7 @@ public class OrderService {
         CustomerEntity customerEntity = customerAuthTokenEntity.getCustomer();
 
         // Gets the address details from addressService
-        AddressEntity addressEntity = addressService.getAddressByUUID(saveOrderRequest.getAddressId());
+        AddressEntity addressEntity = addressService.getAddressByUUID(saveOrderRequest.getAddressId(), customerEntity);
 
         // Gets the Customer address details from customerAddressDao
         CustomerAddressEntity customerAddressEntity = customerAddressDao.getCustAddressByCustIdAddressId(customerAuthTokenEntity.getCustomer(), addressEntity);
