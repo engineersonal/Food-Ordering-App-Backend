@@ -5,7 +5,6 @@ import com.upgrad.FoodOrderingApp.service.entity.PaymentEntity;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import java.util.List;
 
 public class PaymentDao {
 
@@ -20,14 +19,4 @@ public class PaymentDao {
             return null;
         }
     }
-
-    public List<PaymentEntity> getAllPaymentMethods(){
-
-        try {
-            return this.entityManager.createNamedQuery("allPaymentMethods", PaymentEntity.class).getResultList();
-        } catch (NoResultException nre) {
-            return null;
-        }
-    }
-
 }
