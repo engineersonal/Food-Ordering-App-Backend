@@ -104,7 +104,7 @@ public class OrdersEntity implements Serializable {
         return bill;
     }
 
-    public void setBill(Double bill) {
+    public void setBill(Float bill) {
         this.bill = bill;
     }
 

@@ -25,11 +25,6 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
 
-    /**
-     *
-     * @return Payment methods list
-     *
-     */
     @RequestMapping(method = RequestMethod.GET, path = "/payment", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<PaymentListResponse> getAllPaymentMethods() {
 
