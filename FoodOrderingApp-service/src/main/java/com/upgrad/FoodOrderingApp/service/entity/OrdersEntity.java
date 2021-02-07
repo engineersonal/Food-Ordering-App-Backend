@@ -5,9 +5,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.time.ZonedDateTime;
+
 
 //This Class represents the Orders table in the DB
 
@@ -46,8 +45,7 @@ public class OrdersEntity implements Serializable {
     private double discount;
 
     @Column(name = "date")
-    @NotNull
-    private Timestamp  date;
+    private ZonedDateTime date;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "payment_id")
@@ -72,7 +70,7 @@ public class OrdersEntity implements Serializable {
 
     }
 
-    public OrdersEntity(String uuid, Double bill, CouponEntity couponEntity, Double discount, Timestamp orderDate, PaymentEntity paymentEntity, CustomerEntity customerEntity, AddressEntity addressEntity, RestaurantEntity restaurantEntity) {
+    public OrdersEntity(String uuid, Double bill, CouponEntity couponEntity, Double discount, ZonedDateTime orderDate, PaymentEntity paymentEntity, CustomerEntity customerEntity, AddressEntity addressEntity, RestaurantEntity restaurantEntity) {
         this.uuid = uuid;
         this.bill = bill;
         this.coupon = couponEntity;
@@ -102,7 +100,7 @@ public class OrdersEntity implements Serializable {
         this.uuid = uuid;
     }
 
-    public BigDecimal getBill() {
+    public Double getBill() {
         return bill;
     }
 
@@ -118,7 +116,7 @@ public class OrdersEntity implements Serializable {
         this.coupon = coupon;
     }
 
-    public BigDecimal getDiscount() {
+    public Double getDiscount() {
         return discount;
     }
 
@@ -126,7 +124,7 @@ public class OrdersEntity implements Serializable {
         this.discount = discount;
     }
 
-    public Timestamp getDate() {
+    public ZonedDateTime getDate() {
         return date;
     }
 
