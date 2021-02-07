@@ -5,8 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.time.ZonedDateTime;
-
+import java.sql.Timestamp;
 
 //This Class represents the Orders table in the DB
 
@@ -15,9 +14,7 @@ import java.time.ZonedDateTime;
 @NamedQueries({
             @NamedQuery(name = "getOrdersByCustomers",query = "SELECT o FROM OrdersEntity o WHERE o.customer = :customer ORDER BY o.date DESC "),
             @NamedQuery(name = "getOrdersByRestaurant",query = "SELECT o FROM OrdersEntity o WHERE o.restaurant = :restaurant"),
-            @NamedQuery(name = "getOrdersByAddress",query = "SELECT o FROM OrdersEntity o WHERE o.address = :address"),
-            @NamedQuery(name = "ordersByUuid",query="select o from OrdersEntity o where o.uuid=:uuid"),
-            @NamedQuery(name = "ordersById", query = "select o from OrdersEntity o where o.id=:id"),
+            @NamedQuery(name = "getOrdersByAddress",query = "SELECT o FROM OrdersEntity o WHERE o.address = :address")
 })
 public class OrdersEntity implements Serializable {
 
@@ -45,7 +42,8 @@ public class OrdersEntity implements Serializable {
     private double discount;
 
     @Column(name = "date")
-    private ZonedDateTime date;
+    @NotNull
+    private Timestamp  date;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "payment_id")
@@ -70,7 +68,7 @@ public class OrdersEntity implements Serializable {
 
     }
 
-    public OrdersEntity(String uuid, Double bill, CouponEntity couponEntity, Double discount, ZonedDateTime orderDate, PaymentEntity paymentEntity, CustomerEntity customerEntity, AddressEntity addressEntity, RestaurantEntity restaurantEntity) {
+    public OrdersEntity(String uuid, Double bill, CouponEntity couponEntity, Double discount, Timestamp orderDate, PaymentEntity paymentEntity, CustomerEntity customerEntity, AddressEntity addressEntity, RestaurantEntity restaurantEntity) {
         this.uuid = uuid;
         this.bill = bill;
         this.coupon = couponEntity;
@@ -104,7 +102,7 @@ public class OrdersEntity implements Serializable {
         return bill;
     }
 
-    public void setBill(Double bill) {
+    public void setBill(Float bill) {
         this.bill = bill;
     }
 
@@ -124,11 +122,11 @@ public class OrdersEntity implements Serializable {
         this.discount = discount;
     }
 
-    public ZonedDateTime getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(ZonedDateTime date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 
