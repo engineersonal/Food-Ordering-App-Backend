@@ -5,9 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.time.ZonedDateTime;
 
 //This Class represents the Orders table in the DB
 
@@ -16,9 +14,7 @@ import java.time.ZonedDateTime;
 @NamedQueries({
             @NamedQuery(name = "getOrdersByCustomers",query = "SELECT o FROM OrdersEntity o WHERE o.customer = :customer ORDER BY o.date DESC "),
             @NamedQuery(name = "getOrdersByRestaurant",query = "SELECT o FROM OrdersEntity o WHERE o.restaurant = :restaurant"),
-            @NamedQuery(name = "getOrdersByAddress",query = "SELECT o FROM OrdersEntity o WHERE o.address = :address"),
-            @NamedQuery(name = "ordersByUuid",query="select o from OrdersEntity o where o.uuid=:uuid"),
-            @NamedQuery(name = "ordersById", query = "select o from OrdersEntity o where o.id=:id"),
+            @NamedQuery(name = "getOrdersByAddress",query = "SELECT o FROM OrdersEntity o WHERE o.address = :address")
 })
 public class OrdersEntity implements Serializable {
 
@@ -102,7 +98,7 @@ public class OrdersEntity implements Serializable {
         this.uuid = uuid;
     }
 
-    public BigDecimal getBill() {
+    public Double getBill() {
         return bill;
     }
 
@@ -118,7 +114,7 @@ public class OrdersEntity implements Serializable {
         this.coupon = coupon;
     }
 
-    public BigDecimal getDiscount() {
+    public Double getDiscount() {
         return discount;
     }
 
@@ -130,7 +126,7 @@ public class OrdersEntity implements Serializable {
         return date;
     }
 
-    public void setDate(ZonedDateTime date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 

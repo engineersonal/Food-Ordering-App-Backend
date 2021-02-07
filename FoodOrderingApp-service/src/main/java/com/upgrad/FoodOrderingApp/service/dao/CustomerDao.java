@@ -1,6 +1,5 @@
 package com.upgrad.FoodOrderingApp.service.dao;
 
-import com.upgrad.FoodOrderingApp.service.entity.CustomerAuthEntity;
 import com.upgrad.FoodOrderingApp.service.entity.CustomerEntity;
 import org.springframework.stereotype.Repository;
 
@@ -48,15 +47,6 @@ public class CustomerDao {
             CustomerEntity customer = entityManager.createNamedQuery("customerByUuid",CustomerEntity.class).setParameter("uuid",uuid).getSingleResult();
             return customer;
         }catch (NoResultException nre){
-            return null;
-        }
-    }
-
-    public CustomerAuthEntity getCustomerAuthToken(final String accessToken) {
-        try {
-            return entityManager.createNamedQuery("customerAuthTokenByAccessToken", CustomerAuthEntity.class)
-                    .setParameter("accessToken", accessToken).getSingleResult();
-        } catch(NoResultException nre) {
             return null;
         }
     }
